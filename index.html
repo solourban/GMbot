@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경매판독 · 사건번호로 권리분석</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="container-wide">
+    <div class="masthead-inner">
+      <h1 class="masthead-title">경매<em>판독</em></h1>
+      <div class="masthead-sub">경매 권리분석 · 실질투자비 계산</div>
+      <div class="masthead-date" id="todayDate"></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-kicker">대법원 법원경매정보 자동 분석</div>
+    <h2 class="hero-headline">
+      사건번호 하나로<br>
+      <em>판독서</em>가 나옵니다
+    </h2>
+    <p class="hero-lede">
+      말소기준·대항력·인수금액·배당·실질투자비·수익 시나리오까지<br>
+      <strong>한 장의 판독서</strong>로 정리합니다.
+    </p>
+
+    <form class="search-form" onsubmit="return false">
+      <div class="search-row-court">
+        <label class="field-label-inline">법원</label>
+        <select id="jiwonNm" class="field">
+          <option>서울중앙지방법원</option>
+          <option>서울동부지방법원</option>
+          <option>서울서부지방법원</option>
+          <option>서울남부지방법원</option>
+          <option>서울북부지방법원</option>
+          <option>수원지방법원</option>
+          <option>성남지원</option>
+          <option>여주지원</option>
+          <option>평택지원</option>
+          <option>안산지원</option>
+          <option>안양지원</option>
+          <option>고양지원</option>
+          <option>부천지원</option>
+          <option>인천지방법원</option>
+          <option>의정부지방법원</option>
+          <option>대전지방법원</option>
+          <option>천안지원</option>
+          <option>청주지방법원</option>
+          <option>부산지방법원</option>
+          <option>부산지방법원 동부지원</option>
+          <option>부산지방법원 서부지원</option>
+          <option>대구지방법원</option>
+          <option>울산지방법원</option>
+          <option>창원지방법원</option>
+          <option>광주지방법원</option>
+          <option>전주지방법원</option>
+          <option>춘천지방법원</option>
+          <option>제주지방법원</option>
+        </select>
+      </div>
+
+      <div class="search-row-case-v2">
+        <label class="field-label-inline">사건번호</label>
+        <div class="search-case-fields">
+          <input id="saYear" class="field num" type="text" value="2025" maxlength="4" aria-label="연도">
+          <span class="search-sep">타경</span>
+          <input id="saSer" class="field num" type="text" placeholder="71801" aria-label="일련번호">
+          <span class="search-sep">호</span>
+        </div>
+      </div>
+
+      <button id="btnFetch" class="btn btn-primary">분석 시작</button>
+      <p class="search-hint">기본 정보는 대법원에서 자동 수집 · 2~5초</p>
+    </form>
+  </div>
+</section>
+
+<!-- 짧은 기능 요약 3개 -->
+<section class="features">
+  <div class="container">
+    <div class="features-head">판독서가 알려주는 것</div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-num">01</div>
+        <div class="feature-title">권리관계</div>
+        <div class="feature-desc">말소기준·대항력·인수권리를 자동 판정. 배당표까지 시뮬레이션합니다.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-num">02</div>
+        <div class="feature-title">실질 투자비</div>
+        <div class="feature-desc">낙찰가에 취득세·법무사비·명도비·관리비까지 더해 진짜 매입비를 계산합니다.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-num">03</div>
+        <div class="feature-title">수익 시나리오</div>
+        <div class="feature-desc">매도·전세·월세 시 예상 손익을 시세 기준으로 비교합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="results container" id="resultsSection"></main>
+
+<footer class="colophon">
+  <div class="container">
+    <p>경매판독은 학습·참고용 분석 도구이며, 법률 자문을 대체하지 않습니다.</p>
+    <p>주택임대차보호법·민사집행법 일반원칙 기반 · 실제 입찰 전 원본 서류 재확인 필수</p>
+  </div>
+</footer>
+
+<script>
+// 오늘 날짜 한글 표기
+(function() {
+  const d = new Date();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+  document.getElementById('todayDate').textContent =
+    `${d.getFullYear()}.${mm}.${dd} ${dayNames[d.getDay()]}요일`;
+})();
+</script>
+<script src="/app.js"></script>
+</body>
+</html>
